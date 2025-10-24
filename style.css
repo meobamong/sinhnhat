@@ -1,0 +1,44 @@
+html, body {
+  margin: 0; padding: 0;
+  background: black;
+  overflow: hidden;
+  height: 100vh;
+}
+canvas {
+  display: block;
+  background: black;
+}
+#finalImage {
+  /* 1. VỊ TRÍ & XẾP LỚP (Layering) */
+  /* Đặt hình ảnh lên trên tất cả các phần tử khác (bao gồm cả Canvas) */
+  position: absolute; 
+  /* Căn hình ảnh vào giữa màn hình */
+  top: 50%; 
+  left: 50%; 
+  /* Dịch chuyển ngược lại 50% kích thước của chính nó để căn chính xác tâm hình ảnh */
+  transform: translate(-50%, -50%); 
+  z-index: 10; /* Đảm bảo hình ảnh luôn nằm trên Canvas */
+  
+  /* 2. KÍCH THƯỚC VÀ HIỂN THỊ */
+  max-width: 80%; /* Giới hạn chiều rộng tối đa là 80% màn hình */
+  max-height: 80vh; /* Giới hạn chiều cao tối đa là 80% chiều cao màn hình */
+  object-fit: contain; /* Đảm bảo hình ảnh được thu nhỏ/phóng to vừa vặn mà không bị méo */
+  
+  /* 3. HIỆU ỨNG THẨM MỸ (Tùy chọn) */
+  border: 5px solid white; /* Thêm đường viền trắng cho nổi bật */
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.7); /* Thêm bóng sáng nhẹ */
+  
+  /* 4. TRẠNG THÁI ẨN BAN ĐẦU */
+  opacity: 0; /* Thiết lập độ trong suốt bằng 0 (ẩn) */
+  visibility: hidden; /* Đảm bảo hình ảnh bị ẩn hoàn toàn */
+  
+  /* 5. HIỆU ỨNG CHUYỂN ĐỘNG */
+  /* Áp dụng hiệu ứng chuyển đổi (transition) cho thuộc tính opacity và visibility trong 1 giây */
+  transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+}
+
+/* CLASS DÙNG ĐỂ HIỂN THỊ HÌNH ẢNH BẰNG JAVASCRIPT */
+#finalImage.show {
+  opacity: 1; /* Thiết lập độ trong suốt bằng 1 (hiện) */
+  visibility: visible; /* Làm hình ảnh có thể nhìn thấy */
+}
